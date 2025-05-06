@@ -3,7 +3,7 @@ import 'package:projektugas3/pages/lbs.dart';
 import 'package:projektugas3/pages/numtypes.dart';
 import 'package:projektugas3/pages/stopwatch.dart';
 import 'package:projektugas3/pages/timeconvert.dart';
-import 'package:projektugas3/pages/web_rekomendation.dart'; // ✅ Tambahkan ini
+import 'package:projektugas3/pages/web_rekomendation.dart';
 import '../util/local_storage.dart';
 import 'loginpage.dart';
 
@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   void _onItemTapped(int index) async {
     if (index == 2) {
       await LocalStorage.logout();
+      if (!mounted) return; // Menambahkan pengecekan mounted
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -143,7 +144,9 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.pink.withOpacity(0.3),
+              color: Colors.pink.withAlpha(
+                (0.3 * 255).round(),
+              ), // Menggunakan withAlpha
               spreadRadius: 5,
               blurRadius: 10,
               offset: const Offset(0, 5),
