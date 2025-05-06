@@ -3,7 +3,7 @@ import 'package:projektugas3/pages/lbs.dart';
 import 'package:projektugas3/pages/numtypes.dart';
 import 'package:projektugas3/pages/stopwatch.dart';
 import 'package:projektugas3/pages/timeconvert.dart';
-import 'package:projektugas3/pages/web_recommendation.dart';
+import 'package:projektugas3/pages/web_rekomendation.dart'; // ✅ Tambahkan ini
 import '../util/local_storage.dart';
 import 'loginpage.dart';
 
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             context,
             icon: Icons.my_location,
-            label: 'Tracking Lokasi',
+            label: 'Location Tracking',
             destination: const LBS(),
           ),
           _buildMenuItem(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             context,
             icon: Icons.web,
             label: 'Rekomendasi Web',
-            destination: const WebRecommendationPage(),
+            destination: const WebRecommendationPage(), // ✅ Menu tambahan
           ),
         ],
       ),
@@ -153,17 +153,21 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 60, color: const Color(0xFFEA6B8D)),
+            AnimatedOpacity(
+              opacity: 1.0,
+              duration: const Duration(milliseconds: 500),
+              child: Icon(icon, size: 60, color: const Color(0xFFEA6B8D)),
+            ),
             const SizedBox(height: 8),
-            Text(
-              label,
-              textAlign: TextAlign.center,
+            AnimatedDefaultTextStyle(
               style: const TextStyle(
                 fontSize: 18,
                 color: Color(0xFF6D6875),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Comic Sans MS',
               ),
+              duration: const Duration(milliseconds: 300),
+              child: Text(label, textAlign: TextAlign.center),
             ),
           ],
         ),
