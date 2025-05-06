@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'web_recommendation_detail.dart';
+import 'web_rekomendation_detail.dart'; // Sesuaikan nama file
 
 class WebRecommendationPage extends StatefulWidget {
   const WebRecommendationPage({super.key});
@@ -23,6 +23,13 @@ class _WebRecommendationPageState extends State<WebRecommendationPage> {
       'image':
           'https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png',
       'likes': 430,
+    },
+    {
+      'title': 'GitHub',
+      'link': 'https://github.com',
+      'image':
+          'https://github.githubassets.com/images/modules/logos_page/Octocat.png',
+      'likes': 320,
     },
   ];
 
