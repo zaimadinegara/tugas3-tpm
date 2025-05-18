@@ -21,12 +21,19 @@ class _HomePageState extends State<HomePage> {
   void _onItemTapped(int index) async {
     if (index == 2) {
       // Handle logout action
-      await LocalStorage.logout();
-      if (!mounted) return; // Safety check for mounted widget
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+      try {
+        await LocalStorage.logout();
+        if (!mounted) return; // Safety check for mounted widget
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      } catch (e) {
+        // Handle any error that occurs during logout (e.g., show SnackBar)
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Logout failed: $e')));
+      }
     } else if (index == 3) {
       // Navigate to ProfilePage when Profile tab is selected
       Navigator.push(

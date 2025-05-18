@@ -66,8 +66,8 @@ class _LBSState extends State<LBS> {
                 options: MapOptions(
                   center:
                       _currentPosition ??
-                      LatLng(0, 0), // Default to (0, 0) if position is null
-                  zoom: 16.0, // Correct usage of 'zoom' parameter
+                      LatLng(0, 0), // Default center if null
+                  zoom: 16.0, // Correct usage of zoom parameter
                 ),
                 children: [
                   TileLayer(
