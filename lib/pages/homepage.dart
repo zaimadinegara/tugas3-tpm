@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           'Main Menu',
           style: TextStyle(fontFamily: 'Comic Sans MS'),
         ),
-        backgroundColor: const Color(0xFFEA6B8D),
+        backgroundColor: const Color(0xFFEA6B8D), // Pink color for AppBar
         elevation: 4,
       ),
       body: _selectedIndex == 0 ? _buildMainMenu(context) : _buildHelpPage(),
