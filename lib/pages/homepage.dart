@@ -3,7 +3,8 @@ import 'package:projektugas3/pages/lbs.dart';
 import 'package:projektugas3/pages/numtypes.dart';
 import 'package:projektugas3/pages/stopwatch.dart';
 import 'package:projektugas3/pages/timeconvert.dart';
-import 'package:projektugas3/pages/web_rekomendation.dart';
+import 'package:projektugas3/pages/web_rekomendation.dart'; // Rekomendasi Web
+import 'package:projektugas3/pages/profilepage.dart'; // Profile Page import is now necessary
 import '../util/local_storage.dart';
 import 'loginpage.dart';
 
@@ -19,11 +20,18 @@ class _HomePageState extends State<HomePage> {
 
   void _onItemTapped(int index) async {
     if (index == 2) {
+      // Handle logout action
       await LocalStorage.logout();
-      if (!mounted) return; // Menambahkan pengecekan mounted
+      if (!mounted) return; // Safety check for mounted widget
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+    } else if (index == 3) {
+      // Navigate to ProfilePage when Profile tab is selected
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfilePage()),
       );
     } else {
       setState(() {
@@ -58,6 +66,10 @@ class _HomePageState extends State<HomePage> {
             label: 'Help',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ), // Profile tab added
         ],
       ),
     );
@@ -100,7 +112,7 @@ class _HomePageState extends State<HomePage> {
             context,
             icon: Icons.web,
             label: 'Rekomendasi Web',
-            destination: const WebRecommendationPage(), // ✅ Menu tambahan
+            destination: const WebRecommendationPage(),
           ),
         ],
       ),
